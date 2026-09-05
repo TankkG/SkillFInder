@@ -1,0 +1,177 @@
+.profile-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header-actions {
+  margin-bottom: 20px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.professional-role {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.rating-count {
+  color: #777;
+  font-size: 14px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+h4 {
+  font-size: 16px;
+  color: #555;
+  margin: 15px 0 5px;
+}
+
+.info-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.services-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.services-list li {
+  margin-bottom: 5px;
+}
+
+.location-info {
+  margin-top: 15px;
+}
+
+.rating-card {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+}
+
+.rating-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.client-name {
+  font-weight: 600;
+  color: #444;
+}
+
+.rating-date {
+  color: #777;
+  font-size: 14px;
+}
+
+.rating-comment {
+  margin-top: 10px;
+  color: #555;
+}
+
+.no-ratings {
+  text-align: center;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  color: #666;
+}
+
+.not-found {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn i {
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

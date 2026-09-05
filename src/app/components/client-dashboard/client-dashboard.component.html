@@ -1,0 +1,9 @@
+<div class="client-dashboard">
+  <h2>Tus Reservas</h2>
+  <div *ngIf="reservations.length === 0">No tienes reservas</div>
+  <ul *ngIf="reservations.length">
+    <li *ngFor="let r of reservations">
+      Profesional: {{ r.professionalName }} — Fecha: {{ r.date }} {{ r.time }} — Estado: {{ r.status }}
+    </li>
+  </ul>
+</div>

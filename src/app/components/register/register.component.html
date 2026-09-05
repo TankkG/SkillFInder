@@ -1,0 +1,35 @@
+<div class="register-container">
+  <h2>Registro</h2>
+  <form (ngSubmit)="submit()">
+    <div>
+      <label>Nombre</label>
+      <input [(ngModel)]="name" name="name" required />
+    </div>
+    <div>
+      <label>Email</label>
+      <input [(ngModel)]="email" name="email" required />
+    </div>
+    <div>
+      <label>Contraseña</label>
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </div>
+    <div>
+      <label>Rol</label>
+      <select [(ngModel)]="role" name="role" required>
+        <option value="cliente">cliente</option>
+        <option value="gomero">gomero</option>
+        <option value="chapero">chapero</option>
+        <option value="mecanico">mecanico</option>
+        <option value="electricista">electricista</option>
+      </select>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div>
+      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Registrando...' : 'Registrar' }}
+      </button>
+    </div>
+  </form>
+</div>

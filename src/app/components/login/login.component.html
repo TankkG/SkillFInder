@@ -1,0 +1,31 @@
+<div class="login-container">
+  <h2>Iniciar sesión</h2>
+  <form (ngSubmit)="login()">
+    <div>
+      <label>Email</label>
+      <input [(ngModel)]="email" name="email" required />
+    </div>
+    <div>
+      <label>Contraseña</label>
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </div>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" [disabled]="isLoggingIn">
+        {{ isLoggingIn ? 'Iniciando sesión...' : 'Ingresar' }}
+      </button>
+    </div>
+  </form>
+
+  <div class="extras">
+    <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+    <div class="debug">
+      <!-- mostramos botones de debug pero no crean demo -->
+      <button (click)="loginDemo()" class="btn btn-light">Demo Cliente (deshabilitado)</button>
+      <button (click)="loginProfDemo()" class="btn btn-light">Demo Profesional (deshabilitado)</button>
+      <button (click)="showRegisteredUsers()" class="btn btn-link">Ver usuarios (consola)</button>
+    </div>
+  </div>
+</div>

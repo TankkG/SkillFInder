@@ -1,0 +1,9 @@
+<div class="history-container">
+    <h2>Historial</h2>
+  
+    <div *ngFor="let item of history" class="history-item">
+      <p><strong>{{ item.type }}:</strong> {{ item.description }}</p>
+      <p><small>{{ item.date }}</small></p>
+    </div>
+  </div>
+  

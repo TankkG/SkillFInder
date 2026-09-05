@@ -1,0 +1,67 @@
+<div class="admin-container">
+  <h2>Panel de administración</h2>
+
+  <section class="create-user">
+    <h3>Crear nuevo usuario</h3>
+    <form (ngSubmit)="createUser()">
+      <input [(ngModel)]="newUser.name" name="name" placeholder="Nombre" required />
+      <input [(ngModel)]="newUser.email" name="email" placeholder="Email" type="email" required />
+      <input [(ngModel)]="newUser.password" name="password" placeholder="Password" required />
+
+      <select [(ngModel)]="newUser.role" name="role">
+        <option value="cliente">Cliente</option>
+        <option value="gomero">Gomero</option>
+        <option value="mecanico">Mecánico</option>
+        <option value="electricista_auto">Electricista de autos</option>
+        <option value="chapero">Chapero</option>
+        <option value="admin">Administrador</option>
+      </select>
+
+      <button type="submit">Crear</button>
+    </form>
+  </section>
+
+  <section class="users-list">
+    <h3>Usuarios</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td *ngIf="editUserId !== u.id">{{ u.name }}</td>
+          <td *ngIf="editUserId === u.id"><input [(ngModel)]="u.name" /></td>
+
+          <td *ngIf="editUserId !== u.id">{{ u.email }}</td>
+          <td *ngIf="editUserId === u.id"><input [(ngModel)]="u.email" /></td>
+
+          <td *ngIf="editUserId !== u.id">{{ u.role }}</td>
+          <td *ngIf="editUserId === u.id">
+            <select [(ngModel)]="u.role">
+              <option value="cliente">Cliente</option>
+              <option value="gomero">Gomero</option>
+              <option value="mecanico">Mecánico</option>
+              <option value="electricista_auto">Electricista de autos</option>
+              <option value="chapero">Chapero</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </td>
+
+          <td>
+            <button *ngIf="editUserId !== u.id" (click)="startEdit(u)">Editar</button>
+            <button *ngIf="editUserId === u.id" (click)="saveEdit(u)">Guardar</button>
+            <button *ngIf="editUserId === u.id" (click)="cancelEdit()">Cancelar</button>
+            <button (click)="deleteUser(u.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <button (click)="goBack()">Volver</button>
+</div>

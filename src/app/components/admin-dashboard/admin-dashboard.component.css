@@ -1,0 +1,4 @@
+.admin-container { max-width: 900px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px;}
+.create-user input, .create-user select { margin-right: 8px; padding: 8px;}
+.users-list table { width: 100%; border-collapse: collapse; margin-top: 12px;}
+.users-list th, .users-list td { padding: 8px; border-bottom: 1px solid #eee;}

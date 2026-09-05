@@ -1,0 +1,10 @@
+<div class="scanner-container">
+    <h2>Escanear Código QR</h2>
+    <button (click)="simulateScan('QR escaneado con éxito')">Simular escaneo</button>
+  
+    <div *ngIf="scannedResult">
+      <h3>Resultado del escaneo:</h3>
+      <p>{{ scannedResult }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,28 @@
+<div class="map-page">
+  <div class="map-header">
+    <button (click)="goBack()">← Volver</button>
+    <h2>Mapa de Profesionales</h2>
+  </div>
+
+  <div class="map-controls">
+    <label>
+      Filtrar por rol:
+      <select [(ngModel)]="selectedRoleFilter" (change)="onFilterChange()">
+        <option value="all">Todos</option>
+        <option value="gomero">Gomero</option>
+        <option value="chapero">Chapero</option>
+        <option value="mecanico">Mecánico</option>
+        <option value="electricista">Electricista</option>
+      </select>
+    </label>
+
+    <label style="margin-left:12px;">
+      Radio (km):
+      <input type="number" [(ngModel)]="radiusKm" (change)="onRadiusChange()" min="0" step="1" style="width:80px" />
+    </label>
+
+    <button style="margin-left:12px;" (click)="applyFiltersAndRender()">Aplicar</button>
+  </div>
+
+  <div id="map" style="height:75vh; width:100%; border:1px solid #ddd;"></div>
+</div>

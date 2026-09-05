@@ -1,0 +1,10 @@
+<div class="top-rankings">
+  <h3>Top 5 profesionales</h3>
+  <div *ngIf="topProfessionals.length === 0">No hay profesionales aún.</div>
+  <ul>
+    <li *ngFor="let p of topProfessionals">
+      <strong>{{p.name}}</strong> — <app-star-rating [rating]="p.rating" [readonly]="true"></app-star-rating>
+      <div class="services">{{p.services?.join(', ')}}</div>
+    </li>
+  </ul>
+</div>

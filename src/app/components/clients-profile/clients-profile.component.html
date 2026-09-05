@@ -1,0 +1,84 @@
+<div class="profile-container">
+    <div class="header-actions">
+      <button (click)="goBack()" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+      </button>
+    </div>
+  
+    <div *ngIf="client; else notFound">
+      <div class="profile-header">
+        <h2>{{ client.name }}</h2>
+        <div class="client-location" *ngIf="client.location">{{ client.location }}</div>
+        <div class="rating-container">
+          <app-star-rating [rating]="client.rating" [readonly]="true"></app-star-rating>
+          <span class="rating-count">({{ ratings.length }} calificaciones)</span>
+        </div>
+      </div>
+  
+      <div class="profile-details">
+        <!-- Historial de reservas -->
+        <div class="section">
+          <h3>Historial de Reservas</h3>
+          <div *ngIf="reservations.length > 0; else noReservations" class="reservations-list">
+            <div *ngFor="let reservation of reservations" class="reservation-card">
+              <div class="reservation-header">
+                <div class="reservation-date">
+                  <i class="fas fa-calendar"></i> {{ formatDate(reservation.date) }}
+                </div>
+                <div class="reservation-status" [ngClass]="getStatusClass(reservation.status)">
+                  {{ getStatusText(reservation.status) }}
+                </div>
+              </div>
+              <div class="reservation-time">
+                <i class="fas fa-clock"></i> {{ reservation.time }}
+              </div>
+            </div>
+          </div>
+          <ng-template #noReservations>
+            <div class="empty-state">
+              <i class="fas fa-calendar-times"></i>
+              <p>No hay reservas con este cliente</p>
+            </div>
+          </ng-template>
+        </div>
+  
+        <!-- Calificaciones del cliente -->
+        <div class="section">
+          <div class="section-header">
+            <h3>Calificaciones del Cliente</h3>
+            <button (click)="rateClient()" class="btn btn-primary">
+              <i class="fas fa-star"></i> Calificar Cliente
+            </button>
+          </div>
+          
+          <div *ngIf="ratings.length > 0; else noRatings" class="ratings-list">
+            <div *ngFor="let rating of ratings" class="rating-card">
+              <div class="rating-header">
+                <div class="professional-name">{{ rating.professionalName }}</div>
+                <div class="rating-date">{{ formatDate(rating.date) }}</div>
+              </div>
+              <app-star-rating [rating]="rating.rating" [readonly]="true" [showValue]="false"></app-star-rating>
+              <p class="rating-comment">{{ rating.comment }}</p>
+            </div>
+          </div>
+          
+          <ng-template #noRatings>
+            <div class="empty-state">
+              <i class="fas fa-star"></i>
+              <p>Este cliente aún no tiene calificaciones</p>
+              <p>¡Sé el primero en calificarlo!</p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #notFound>
+      <div class="not-found">
+        <h2>Cliente no encontrado</h2>
+        <p>El cliente que buscas no existe o ha sido eliminado.</p>
+        <button (click)="goBack()" class="btn btn-primary">Volver</button>
+      </div>
+    </ng-template>
+  </div>
+  

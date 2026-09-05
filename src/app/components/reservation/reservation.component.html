@@ -1,0 +1,67 @@
+<div class="reservation-container">
+  <div class="header-actions">
+    <button (click)="goBack()" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</button>
+  </div>
+
+  <div *ngIf="professional; else noProfessional">
+    <h2>Realizar Reserva</h2>
+    <div class="professional-info">
+      <p><strong>Profesional:</strong> {{ professional.name }}</p>
+      <p><strong>Especialidad:</strong> {{ professional.role }}</p>
+    </div>
+
+    <div *ngIf="!reservationSuccess; else successMessage">
+      <form (ngSubmit)="onSubmit()" class="reservation-form" novalidate>
+        <div class="form-group">
+          <label for="date">Fecha</label>
+          <input type="date" id="date" [(ngModel)]="date" name="date" [min]="minDate" required (change)="onDateChange()" />
+        </div>
+
+        <div class="form-group" *ngIf="date">
+          <label for="time">Hora (8:00 - 19:00)</label>
+          <select id="time" [(ngModel)]="time" name="time" required>
+            <option value="" disabled>Selecciona una hora</option>
+            <option *ngFor="let slot of availableTimeSlots" [value]="slot">{{ slot }}</option>
+          </select>
+          <div *ngIf="date && availableTimeSlots.length === 0" class="no-slots-message">
+            <p>No hay horarios disponibles para esta fecha.</p>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="!date || !time"><i class="fas fa-calendar-check"></i> Confirmar Reserva</button>
+        </div>
+      </form>
+    </div>
+
+    <ng-template #successMessage>
+      <div class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <h3>¡Reserva Confirmada!</h3>
+        <p>Tu reserva con {{ professional.name }} ha sido registrada.</p>
+        <p><strong>Fecha:</strong> {{ date | date: "dd/MM/yyyy" }}</p>
+        <p><strong>Hora:</strong> {{ time }}</p>
+
+        <div *ngIf="qrCode" class="qr-container">
+          <h4>Código QR</h4>
+          <img [src]="qrCode" alt="QR Reserva" class="qr-code" />
+        </div>
+
+        <div class="post-reservation-actions">
+          <button (click)="calificacion()" class="btn btn-success"><i class="fas fa-star"></i> Calificar Profesional</button>
+          <button (click)="goBack()" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #noProfessional>
+    <div class="error-message">
+      <h3>Error al cargar la información</h3>
+      <p>No se encontró el profesional. Abre su perfil y pulsa "Reservar".</p>
+      <button (click)="goBack()" class="btn btn-primary">Volver</button>
+    </div>
+  </ng-template>
+</div>

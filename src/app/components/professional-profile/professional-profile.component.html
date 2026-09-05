@@ -1,0 +1,38 @@
+<div class="professional-profile-container" *ngIf="professional; else notFound">
+  <div class="profile-header">
+    <h2>{{ professional.displayName || professional.name }}</h2>
+    <p class="role">{{ professional.displayRole || professional.role }}</p>
+  </div>
+
+  <div class="profile-body">
+    <div class="left">
+      <p *ngIf="professional.description"><strong>Sobre:</strong> {{ professional.description }}</p>
+      <p *ngIf="professional.services && professional.services.length"><strong>Servicios:</strong></p>
+      <ul *ngIf="professional.services && professional.services.length">
+        <li *ngFor="let s of professional.services">{{ s }}</li>
+      </ul>
+      <p *ngIf="professional.phone"><strong>Teléfono:</strong> {{ professional.phone }}</p>
+      <p *ngIf="professional.email"><strong>Email:</strong> {{ professional.email }}</p>
+    </div>
+    <div class="right">
+      <p *ngIf="professional.rating"><strong>Calificación:</strong> {{ professional.rating }}</p>
+      <div *ngIf="professional.location">
+        <p><strong>Coordenadas:</strong></p>
+        <p>Lat: {{ professional.location.lat | number:'1.6-6' }},</p>
+        <p>Lng: {{ professional.location.lng | number:'1.6-6' }}</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" (click)="goToReservationQuery(professional)">Reservar</button>
+        <button class="btn btn-outline-primary" (click)="goToReservationParam(professional)">Reservar (ruta)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="no-professional">
+    <h3>Profesional no encontrado</h3>
+    <p>El profesional solicitado no se encontró. Comprueba la URL o vuelve al listado.</p>
+    <button class="btn btn-secondary" (click)="goBack()">Volver</button>
+  </div>
+</ng-template>

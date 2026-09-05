@@ -1,0 +1,38 @@
+<div class="rate-container">
+    <div class="header-actions">
+      <button (click)="goBack()" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+      </button>
+      <button (click)="logout()" class="btn btn-danger">
+        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+      </button>
+    </div>
+  
+    <h2>Calificar a {{ client?.name }}</h2>
+  
+    <div class="rating-section">
+      <p class="rating-label">¿Cómo calificarías a este cliente?</p>
+      <app-star-rating 
+        [rating]="rating" 
+        [readonly]="false" 
+        [showValue]="true"
+        (ratingChange)="onRatingChange($event)"
+      ></app-star-rating>
+      <p class="rating-value">{{ rating }} de 5 estrellas</p>
+    </div>
+  
+    <div class="comment-section">
+      <label for="comment">Comentario (opcional):</label>
+      <textarea 
+        id="comment"
+        [(ngModel)]="comment" 
+        placeholder="Comparte tu experiencia con este cliente..."
+        rows="5"
+      ></textarea>
+    </div>
+  
+    <button (click)="onSubmit()" class="btn btn-primary submit-btn">
+      <i class="fas fa-paper-plane"></i> Enviar Calificación
+    </button>
+  </div>
+  

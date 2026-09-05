@@ -1,0 +1,29 @@
+.map-page {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.map-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.map-controls {
+  position: relative;
+  z-index: 999;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}

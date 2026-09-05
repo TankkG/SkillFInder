@@ -1,0 +1,54 @@
+<div class="clients-container">
+    <div class="header-actions">
+      <button (click)="goBack()" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver al Dashboard
+      </button>
+      <button (click)="logout()" class="btn btn-danger">
+        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+      </button>
+    </div>
+  
+    <h2>Mis Clientes</h2>
+    <p class="subtitle">Clientes que han reservado tus servicios</p>
+  
+    <!-- Búsqueda -->
+    <div class="search-container">
+      <div class="search-box">
+        <input 
+          type="text" 
+          placeholder="Buscar clientes..." 
+          (input)="onSearchChange($event)"
+        />
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+  
+    <!-- Lista de clientes -->
+    <div *ngIf="filteredClients.length > 0; else noClients" class="clients-list">
+      <div *ngFor="let client of filteredClients" class="client-card">
+        <div class="client-info">
+          <h3>{{ client.name }}</h3>
+          <div class="client-rating">
+            <app-star-rating [rating]="client.rating" [readonly]="true"></app-star-rating>
+          </div>
+        </div>
+        <div class="client-actions">
+          <button (click)="viewClientProfile(client)" class="btn btn-info">
+            <i class="fas fa-user"></i> Ver perfil
+          </button>
+          <button (click)="rateClient(client)" class="btn btn-primary">
+            <i class="fas fa-star"></i> Calificar
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #noClients>
+      <div class="empty-state">
+        <i class="fas fa-users"></i>
+        <p>No tienes clientes registrados todavía</p>
+        <p>Los clientes aparecerán aquí cuando reserven tus servicios</p>
+      </div>
+    </ng-template>
+  </div>
+  

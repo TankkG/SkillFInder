@@ -1,0 +1,23 @@
+.not-found-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  button {
+    padding: 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #c0392b;
+  }
+  

@@ -1,0 +1,76 @@
+<div class="professional-dashboard">
+  <div class="header">
+    <h2>Panel Profesional</h2>
+    <div class="actions">
+      <div class="stat">
+        <div class="stat-label">Puntaje medio</div>
+        <div class="stat-value">{{ averageRating }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Reservas totales</div>
+        <div class="stat-value">{{ totalReservations }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Pendientes</div>
+        <div class="stat-value">{{ pendingReservationsCount }}</div>
+      </div>
+      <div class="stat">
+        <button (click)="logout()" class="btn btn-danger">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h3>Reservas pendientes / confirmadas</h3>
+    <div *ngIf="pendingReservations.length > 0; else noPendingReservations">
+      <div *ngFor="let reservation of pendingReservations" class="reservation-card">
+        <div class="reservation-info">
+          <div class="reservation-client">{{ reservation.clientName }}</div>
+          <div class="reservation-meta">
+            <span>{{ formatDate(reservation.date) }} {{ reservation.time }}</span>
+            <span class="reservation-status" [ngClass]="getStatusClass(reservation.status)">{{ getStatusText(reservation.status) }}</span>
+          </div>
+        </div>
+        <div class="reservation-actions">
+          <button (click)="updateReservationStatus(reservation.id, 'confirmed')">Confirmar</button>
+          <button (click)="updateReservationStatus(reservation.id, 'completed')">Completar</button>
+          <button (click)="updateReservationStatus(reservation.id, 'cancelled')">Cancelar</button>
+          <button (click)="generateQRCodeForReservation(reservation)">QR</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #noPendingReservations><div>No hay reservas pendientes.</div></ng-template>
+  </section>
+
+  <section>
+    <h3>Reservas completadas</h3>
+    <div *ngIf="completedReservations.length > 0; else noCompleted">
+      <div *ngFor="let reservation of completedReservations" class="reservation-card">
+        <div>
+          <strong>{{ reservation.clientName }}</strong> — {{ formatDate(reservation.date) }} {{ reservation.time }}
+        </div>
+      </div>
+    </div>
+    <ng-template #noCompleted><div>No hay reservas completadas.</div></ng-template>
+  </section>
+
+  <section>
+    <h3>Calificaciones</h3>
+    <div *ngIf="ratings.length > 0; else noRatings">
+      <div *ngFor="let rating of ratings" class="rating-card">
+        <div class="rating-meta">
+          <div class="rating-date">{{ rating.date | date:'dd/MM/yyyy' }}</div>
+          <div class="rating-comment">{{ rating.comment }}</div>
+        </div>
+        <app-star-rating [rating]="rating.rating" [readonly]="true"></app-star-rating>
+      </div>
+    </div>
+    <ng-template #noRatings><div>No hay calificaciones aún.</div></ng-template>
+  </section>
+
+  <section *ngIf="qrCode">
+    <h3>Código QR</h3>
+    <img [src]="qrCode" alt="QR Code para calificación" />
+    <div><button (click)="downloadQRCode()" class="btn btn-primary">Descargar QR</button></div>
+  </section>
+</div>
